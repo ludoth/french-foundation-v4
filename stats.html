@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stats · Thai Foundation</title>
-  <script src="foundation.js"></script>
+  <title>Stats · French Foundation</title>
+  <script src="foundation-fr.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -65,7 +65,6 @@
     h1 { font-size: 1.5rem; font-weight: 800; color: var(--text); }
     .subtitle { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 28px; }
 
-    /* ── Summary row ── */
     .summary-row {
       display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 10px; width: 100%; max-width: 600px; margin-bottom: 18px;
@@ -88,7 +87,6 @@
       color: var(--text-muted); font-weight: 700; display: block; margin-top: 4px;
     }
 
-    /* ── Section ── */
     .section {
       width: 100%; max-width: 600px;
       background: var(--surface); border: 1px solid var(--border);
@@ -99,30 +97,16 @@
       letter-spacing: 0.09em; color: var(--text-muted); margin-bottom: 16px;
     }
 
-    /* SRS distribution */
-    .srs-bars {
-      display: flex; gap: 6px; align-items: flex-end; height: 80px;
-    }
-    .srs-bar-wrap {
-      flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px;
-    }
+    .srs-bars { display: flex; gap: 6px; align-items: flex-end; height: 80px; }
+    .srs-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
     .srs-bar-outer {
       width: 100%; background: var(--bg); border-radius: 6px;
       overflow: hidden; height: 60px; display: flex; align-items: flex-end;
     }
-    .srs-bar-fill {
-      width: 100%; background: var(--accent);
-      border-radius: 6px 6px 0 0; transition: height 0.5s ease;
-    }
-    .srs-bar-label {
-      font-size: 0.62rem; font-weight: 700; color: var(--text-muted);
-      text-align: center;
-    }
-    .srs-bar-count {
-      font-size: 0.7rem; font-weight: 800; color: var(--accent-hi);
-    }
+    .srs-bar-fill { width: 100%; background: var(--accent); border-radius: 6px 6px 0 0; transition: height 0.5s ease; }
+    .srs-bar-label { font-size: 0.62rem; font-weight: 700; color: var(--text-muted); text-align: center; }
+    .srs-bar-count { font-size: 0.7rem; font-weight: 800; color: var(--accent-hi); }
 
-    /* Category table */
     .cat-table { width: 100%; border-collapse: collapse; }
     .cat-table th {
       text-align: left; font-size: 0.65rem; font-weight: 700;
@@ -143,18 +127,9 @@
     .td-seen     { color: var(--text-muted); }
     .td-total    { color: var(--text-dim); }
 
-    /* Mini progress bar in table */
-    .mini-bar {
-      height: 4px; background: var(--bg); border-radius: 99px;
-      overflow: hidden; min-width: 60px;
-    }
-    .mini-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--mastered));
-      border-radius: 99px;
-    }
+    .mini-bar { height: 4px; background: var(--bg); border-radius: 99px; overflow: hidden; min-width: 60px; }
+    .mini-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--mastered)); border-radius: 99px; }
 
-    /* Weakest cards */
     .weak-list { display: flex; flex-direction: column; gap: 8px; }
     .weak-card {
       background: var(--bg); border: 1px solid var(--border);
@@ -179,61 +154,45 @@
 <h1>📊 Stats</h1>
 <p class="subtitle" id="subtitle-text">Your learning progress</p>
 
-<!-- Summary cards -->
 <div class="summary-row">
-  <div class="summary-card">
-    <span class="summary-val" id="s-total">—</span>
-    <span class="summary-label">Total Cards</span>
-  </div>
-  <div class="summary-card">
-    <span class="summary-val green" id="s-seen">—</span>
-    <span class="summary-label">Seen</span>
-  </div>
-  <div class="summary-card">
-    <span class="summary-val gold" id="s-mastered">—</span>
-    <span class="summary-label">Mastered</span>
-  </div>
-  <div class="summary-card">
-    <span class="summary-val" id="s-streak">—</span>
-    <span class="summary-label">Day Streak 🔥</span>
-  </div>
+  <div class="summary-card"><span class="summary-val" id="s-total">—</span><span class="summary-label" id="l-total">Total Cards</span></div>
+  <div class="summary-card"><span class="summary-val green" id="s-seen">—</span><span class="summary-label" id="l-seen">Seen</span></div>
+  <div class="summary-card"><span class="summary-val gold" id="s-mastered">—</span><span class="summary-label" id="l-mastered">Mastered</span></div>
+  <div class="summary-card"><span class="summary-val" id="s-streak">—</span><span class="summary-label" id="l-streak">Day Streak 🔥</span></div>
 </div>
 
-<!-- SRS Box distribution -->
 <div class="section">
-  <div class="section-title">SRS Box Distribution</div>
+  <div class="section-title" id="t-srs">SRS Box Distribution</div>
   <div class="srs-bars" id="srs-bars"></div>
 </div>
 
-<!-- Category breakdown -->
 <div class="section">
-  <div class="section-title">By Category</div>
+  <div class="section-title" id="t-cat">By Category</div>
   <table class="cat-table">
     <thead>
       <tr>
-        <th>Category</th>
-        <th>Mastered</th>
-        <th>Seen</th>
-        <th>Total</th>
-        <th style="min-width:70px">Progress</th>
+        <th id="th-cat">Category</th>
+        <th id="th-mastered">Mastered</th>
+        <th id="th-seen">Seen</th>
+        <th id="th-total">Total</th>
+        <th id="th-progress" style="min-width:70px">Progress</th>
       </tr>
     </thead>
     <tbody id="cat-breakdown"></tbody>
   </table>
 </div>
 
-<!-- Weakest cards -->
 <div class="section">
-  <div class="section-title">Cards to review (most misses)</div>
+  <div class="section-title" id="t-weak">Cards to review (most misses)</div>
   <div class="weak-list" id="weak-list"></div>
 </div>
 
-<div class="made-by">✦ Thai Foundation v4</div>
+<div class="made-by">✦ French Foundation v4</div>
 
 <script>
 const SRS_INTERVALS = [0, 1, 2, 4, 8, 16];
 
-const CAT_CONFIG = {
+const CAT_EMOJI = {
   numbers:'🔢', pronouns:'👤', verbs:'🏃', days:'📅', greetings:'🙏', nouns:'📦',
   adjectives:'⭐', places:'📍', patterns:'💬', quantifiers:'🔣', shopping:'🛒',
   time:'⏰', questions:'❓', grammar:'📚', family:'👨‍👩‍👧', emotions:'😊',
@@ -242,16 +201,54 @@ const CAT_CONFIG = {
   nature:'🌿', weather:'⛅', alphabet:'🔤', sentences:'💬', random:'🎲',
 };
 
+const CAT_LABELS_FR = {
+  numbers:'Nombres', pronouns:'Pronoms', verbs:'Verbes', days:'Jours', greetings:'Salutations',
+  nouns:'Noms', adjectives:'Adjectifs', places:'Lieux', patterns:'Structures', quantifiers:'Quantités',
+  shopping:'Courses', time:'Temps', questions:'Questions', grammar:'Grammaire', family:'Famille',
+  emotions:'Émotions', transport:'Transport', animals:'Animaux', colors:'Couleurs', food:'Nourriture',
+  body:'Corps', health:'Santé', home:'Maison', work:'Travail', clothing:'Vêtements',
+  directions:'Directions', months:'Mois', nature:'Nature', weather:'Météo', alphabet:'Alphabet',
+  sentences:'Phrases', random:'Aléatoire',
+};
+
+const lang = localStorage.getItem('ff_ui_lang') || 'en';
+const fr = lang === 'fr';
+const T = {
+  back:      fr ? '← Retour' : '← Back',
+  subtitle:  fr ? 'Votre progression' : 'Your learning progress',
+  total:     fr ? 'Cartes au total' : 'Total Cards',
+  seen:      fr ? 'Vues' : 'Seen',
+  mastered:  fr ? 'Maîtrisées' : 'Mastered',
+  streak:    fr ? 'Jours d\'affilée 🔥' : 'Day Streak 🔥',
+  srs:       fr ? 'Répartition SRS' : 'SRS Box Distribution',
+  byCat:     fr ? 'Par catégorie' : 'By Category',
+  weak:      fr ? 'Cartes à revoir (plus d\'erreurs)' : 'Cards to review (most misses)',
+  thCat:     fr ? 'Catégorie' : 'Category',
+  thMast:    fr ? 'Maîtr.' : 'Mastered',
+  thSeen:    fr ? 'Vues' : 'Seen',
+  thTotal:   fr ? 'Total' : 'Total',
+  thProg:    fr ? 'Progrès' : 'Progress',
+  weakEmpty: fr ? 'Aucune erreur pour l\'instant. Continuez !' : 'No mistakes recorded yet. Keep studying!',
+  boxLabels: fr ? ['Nouv.','Boîte 1','Boîte 2','Boîte 3','Boîte 4','Maîtr.'] : ['New/0','Box 1','Box 2','Box 3','Box 4','Mastered'],
+};
+function setText(id, t) { const el = document.getElementById(id); if (el) el.textContent = t; }
+setText('nav-back', T.back);   setText('subtitle-text', T.subtitle);
+setText('l-total', T.total);   setText('l-seen', T.seen);
+setText('l-mastered', T.mastered); setText('l-streak', T.streak);
+setText('t-srs', T.srs);       setText('t-cat', T.byCat);  setText('t-weak', T.weak);
+setText('th-cat', T.thCat);    setText('th-mastered', T.thMast); setText('th-seen', T.thSeen);
+setText('th-total', T.thTotal); setText('th-progress', T.thProg);
+function catLabel(cat) { return fr ? (CAT_LABELS_FR[cat] || cat) : (cat.charAt(0).toUpperCase() + cat.slice(1)); }
+
 function cardKey(idx) { return 'c' + idx; }
 function getEntry(idx) {
   const d = srsData[cardKey(idx)];
   return d || { box: 0, next: 0, seen: false, hits: 0, misses: 0 };
 }
 
-// Load data
-const srsData    = JSON.parse(localStorage.getItem('tf_srs')         || '{}');
-const streak     = parseInt(localStorage.getItem('tf_streak')        || '0');
-const sessions   = parseInt(localStorage.getItem('tf_session_count') || '0');
+const srsData    = JSON.parse(localStorage.getItem('ff_srs')         || '{}');
+const streak     = parseInt(localStorage.getItem('ff_streak')        || '0');
+const sessions   = parseInt(localStorage.getItem('ff_session_count') || '0');
 
 const total      = FOUNDATION.length;
 const seenCards  = FOUNDATION.filter((_, i) => getEntry(i).seen);
@@ -263,7 +260,6 @@ document.getElementById('s-mastered').textContent = masteredCards.length;
 document.getElementById('s-streak').textContent   = streak;
 document.getElementById('session-label').textContent = sessions + ' session' + (sessions !== 1 ? 's' : '');
 
-// ── SRS Bar chart ──
 const boxCounts = Array(SRS_INTERVALS.length).fill(0);
 FOUNDATION.forEach((_, i) => {
   const e = getEntry(i);
@@ -271,7 +267,6 @@ FOUNDATION.forEach((_, i) => {
 });
 const maxCount = Math.max(...boxCounts, 1);
 const barsEl = document.getElementById('srs-bars');
-const boxLabels = ['New/0', 'Box 1', 'Box 2', 'Box 3', 'Box 4', 'Mastered'];
 const boxColors = ['#3a3020','#d97706','#f59e0b','#fbbf24','#86efac','#4ade80'];
 boxCounts.forEach((count, i) => {
   const pct = (count / maxCount * 100).toFixed(1);
@@ -282,14 +277,13 @@ boxCounts.forEach((count, i) => {
     <div class="srs-bar-outer">
       <div class="srs-bar-fill" style="height:${pct}%;background:${boxColors[i]}"></div>
     </div>
-    <div class="srs-bar-label">${boxLabels[i]}</div>
+    <div class="srs-bar-label">${T.boxLabels[i]}</div>
   `;
   barsEl.appendChild(wrap);
 });
 
-// ── Category breakdown ──
-const tbody   = document.getElementById('cat-breakdown');
-const CATS    = [...new Set(FOUNDATION.map(w => w.cat))].sort();
+const tbody = document.getElementById('cat-breakdown');
+const CATS  = [...new Set(FOUNDATION.map(w => w.cat))].sort();
 
 CATS.forEach(cat => {
   const indices  = FOUNDATION.map((w, i) => w.cat === cat ? i : -1).filter(i => i >= 0);
@@ -297,29 +291,24 @@ CATS.forEach(cat => {
   const catSeen  = indices.filter(i => getEntry(i).seen).length;
   const catMast  = indices.filter(i => getEntry(i).box >= SRS_INTERVALS.length - 1).length;
   const pct      = catTotal ? Math.round(catMast / catTotal * 100) : 0;
-  const emoji    = CAT_CONFIG[cat] || '📝';
+  const emoji    = CAT_EMOJI[cat] || '📝';
 
   const tr = document.createElement('tr');
   tr.innerHTML = `
     <td>
       <div class="cat-name-cell">
         <span class="cat-emoji-sm">${emoji}</span>
-        <span class="cat-label-sm">${cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
+        <span class="cat-label-sm">${catLabel(cat)}</span>
       </div>
     </td>
     <td class="td-mastered">${catMast}</td>
     <td class="td-seen">${catSeen}</td>
     <td class="td-total">${catTotal}</td>
-    <td>
-      <div class="mini-bar">
-        <div class="mini-bar-fill" style="width:${pct}%"></div>
-      </div>
-    </td>
+    <td><div class="mini-bar"><div class="mini-bar-fill" style="width:${pct}%"></div></div></td>
   `;
   tbody.appendChild(tr);
 });
 
-// ── Weakest cards ──
 const weakEl   = document.getElementById('weak-list');
 const withData = FOUNDATION.map((w, i) => ({ w, e: getEntry(i) }))
   .filter(x => x.e.misses > 0)
@@ -327,25 +316,22 @@ const withData = FOUNDATION.map((w, i) => ({ w, e: getEntry(i) }))
   .slice(0, 10);
 
 if (!withData.length) {
-  weakEl.innerHTML = '<div class="weak-empty">No mistakes recorded yet. Keep studying!</div>';
+  weakEl.innerHTML = `<div class="weak-empty">${T.weakEmpty}</div>`;
 } else {
   withData.forEach(({ w, e }) => {
     const div = document.createElement('div');
     div.className = 'weak-card';
+    const missWord = fr ? ('erreur' + (e.misses !== 1 ? 's' : '')) : ('miss' + (e.misses !== 1 ? 'es' : ''));
     div.innerHTML = `
       <div>
         <div class="weak-word">${w.en}</div>
-        <div class="weak-th">${w.th}${w.script ? ' · ' + w.script : ''}</div>
+        <div class="weak-th">${w.fr}${w.fr_phon ? ' · ' + w.fr_phon : ''}</div>
       </div>
-      <div class="weak-miss">✗ ${e.misses} miss${e.misses !== 1 ? 'es' : ''}</div>
+      <div class="weak-miss">✗ ${e.misses} ${missWord}</div>
     `;
     weakEl.appendChild(div);
   });
 }
-
-// Lang nav
-const _l = localStorage.getItem('tf_ui_lang') || 'en';
-if (_l === 'th') document.getElementById('nav-back').textContent = '← กลับ';
 </script>
 </body>
 </html>

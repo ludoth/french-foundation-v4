@@ -746,7 +746,7 @@
   <div class="top-bar-right">
     <div class="lang-switcher">
       <button class="lang-btn active" id="lang-en" onclick="setUILang('en')">EN</button>
-      <button class="lang-btn" id="lang-th" onclick="setUILang('th')" style="display:none">ไทย</button>
+      <button class="lang-btn" id="lang-fr" onclick="setUILang('fr')">FR</button>
     </div>
     <button class="menu-btn" id="menu-btn" onclick="toggleMenu()" aria-label="Menu">☰</button>
 
@@ -783,18 +783,18 @@
   <div class="qs-row">
     <button class="qs-btn" onclick="quickStart30()">
       <span class="qs-icon">🎲</span>
-      <span class="qs-name">Quick 30</span>
-      <span class="qs-sub">any category</span>
+      <span class="qs-name" data-i18n="qsQuick30">Quick 30</span>
+      <span class="qs-sub" data-i18n="qsQuick30Sub">any category</span>
     </button>
     <button class="qs-btn" onclick="quickStartCategory()">
       <span class="qs-icon">🗂️</span>
-      <span class="qs-name">1 Topic</span>
-      <span class="qs-sub">random pick</span>
+      <span class="qs-name" data-i18n="qs1Topic">1 Topic</span>
+      <span class="qs-sub" data-i18n="qs1TopicSub">random pick</span>
     </button>
     <button class="qs-btn" onclick="quickStart3Cats()">
       <span class="qs-icon">🎯</span>
-      <span class="qs-name">3 Topics</span>
-      <span class="qs-sub">random mix</span>
+      <span class="qs-name" data-i18n="qs3Topics">3 Topics</span>
+      <span class="qs-sub" data-i18n="qs3TopicsSub">random mix</span>
     </button>
   </div>
   <div class="qs-divider"></div>
@@ -992,6 +992,9 @@ const SHOW_CAT_EMOJI = false;
 const STRINGS = {
   en: {
     appTitle:            'French Foundation',
+    qsQuick30: 'Quick 30', qsQuick30Sub: 'any category',
+    qs1Topic: '1 Topic', qs1TopicSub: 'random pick',
+    qs3Topics: '3 Topics', qs3TopicsSub: 'random mix',
     labelDirection:      'Direction',
     dirEngThai:          'Eng → Fr',
     dirThaiEng:          'Fr → Eng',
@@ -1063,77 +1066,80 @@ const STRINGS = {
       sentences: 'Sentences', random: 'Random',
     },
   },
-  th: {
-    appTitle:            'ไทยพื้นฐาน',
-    labelDirection:      'ทิศทาง',
-    dirEngThai:          'อังกฤษ → ไทย',
-    dirThaiEng:          'ไทย → อังกฤษ',
-    labelDifficulty:     'ระดับ',
-    diffAll:             'ทั้งหมด',
-    diffBeginner:        'เริ่มต้น',
-    diffIntermediate:    'กลาง',
-    diffAdvanced:        'สูง',
-    labelMode:           'รูปแบบ',
-    modeFlashcard:       'บัตรคำ',
-    modeTyping:          'พิมพ์',
-    modeTone:            'เสียงวรรณยุกต์',
-    labelNewCards:       'บัตรใหม่ต่อครั้ง',
-    labelCategories:     'หมวดหมู่',
-    selectAll:           'เลือกทั้งหมด',
-    tooltipStart:        'เลือกอย่างน้อยหนึ่งหมวดหมู่',
-    btnStart:            'เริ่มเรียน',
-    linkStats:           'สถิติ',
-    linkPhonetics:       'สัทศาสตร์',
-    linkHowTo:           'วิธีใช้',
-    btnCheck:            'ตรวจ',
-    toneMid:             'กลาง',
-    toneLow:             'ต่ำ',
-    toneFalling:         'โท',
-    toneHigh:            'สูง',
-    toneRising:          'ตรี',
-    statSeen:            'เห็นแล้ว',
-    statMastered:        'เชี่ยวชาญ',
-    hintFront:           'แตะเพื่อพลิก',
-    hintBack:            'พลิกกลับ',
-    btnSkip:             'ข้าม',
-    btnSolution:         'เฉลย',
-    btnAgain:            '✗ อีกครั้ง',
-    btnGotIt:            '✓ จำได้',
-    statAnswered:        'ตอบแล้ว:',
-    statCorrect:         'ถูกต้อง:',
-    statRemaining:       'เหลืออยู่:',
-    sessionDone:         'เสร็จแล้ว!',
-    doneCorrect:         'ถูก',
-    doneAnswered:        'ตอบ',
-    doneSeen:            'เห็น',
-    doneMastered:        'เชี่ยวชาญ',
-    btnChangeCategories: 'เปลี่ยนหมวดหมู่',
-    btnStudyAgain:       'เรียนอีกครั้ง',
-    resetLink:           'รีเซ็ตทั้งหมด',
-    newBadge:            'ใหม่',
-    suspended:           'บัตรที่ถูกระงับ —',
-    clearAll:            'ล้างทั้งหมด',
-    cardsSuffix:         'บัตร',
-    fullDeck:            'ทั้งหมด',
-    undoBtn:             '↩ เลิกทำ',
-    btnHome:             '← หน้าแรก',
-    modeEngThai:         'อังกฤษ → ไทย',
-    modeThaiEng:         'ไทย → อังกฤษ',
-    doneMsg:             (correct, total, pct) => `ถูก ${correct} จาก ${total} (${pct}%)`,
-    noCards:             'ไม่มีบัตรที่ครบกำหนด! 🎉 มาอีกครั้งในภายหลัง หรือเลือกหมวดหมู่เพิ่ม',
-    confirmReset:        'รีเซ็ตความคืบหน้าทั้งหมด? ไม่สามารถยกเลิกได้',
+  fr: {
+    appTitle:            'French Foundation',
+    qsQuick30: 'Rapide 30', qsQuick30Sub: 'au hasard',
+    qs1Topic: '1 thème', qs1TopicSub: 'thème au hasard',
+    qs3Topics: '3 thèmes', qs3TopicsSub: 'mélange',
+    labelDirection:      'Sens',
+    dirEngThai:          'EN → FR',
+    dirThaiEng:          'FR → EN',
+    labelDifficulty:     'Niveau',
+    diffAll:             'Tout',
+    diffBeginner:        'Débutant',
+    diffIntermediate:    'Intermédiaire',
+    diffAdvanced:        'Avancé',
+    labelMode:           'Mode',
+    modeFlashcard:       'Carte',
+    modeTyping:          'Saisie',
+    modeTone:            'Tons',
+    labelNewCards:       'Nouvelles cartes par session',
+    labelCategories:     'Catégories',
+    selectAll:           'tout sélectionner',
+    tooltipStart:        'Sélectionnez au moins une catégorie',
+    btnStart:            'Commencer',
+    linkStats:           'Stats',
+    linkPhonetics:       'Prononciation',
+    linkHowTo:           'Mode d\'emploi',
+    btnCheck:            'Vérifier',
+    toneMid:             'Moyen',
+    toneLow:             'Bas',
+    toneFalling:         'Descendant',
+    toneHigh:            'Haut',
+    toneRising:          'Montant',
+    statSeen:            'Vues',
+    statMastered:        'Maîtrisées',
+    hintFront:           'toucher pour retourner',
+    hintBack:            'retourner',
+    btnSkip:             'Passer',
+    btnSolution:         'Solution',
+    btnAgain:            '✗ À revoir',
+    btnGotIt:            '✓ Je sais',
+    statAnswered:        'Répondu :',
+    statCorrect:         'Correct :',
+    statRemaining:       'Restant :',
+    sessionDone:         'Session terminée !',
+    doneCorrect:         'Correct',
+    doneAnswered:        'Répondu',
+    doneSeen:            'Vues',
+    doneMastered:        'Maîtrisées',
+    btnChangeCategories: 'Changer de catégories',
+    btnStudyAgain:       'Recommencer',
+    resetLink:           'réinitialiser tout',
+    newBadge:            'Nouveau',
+    suspended:           'cartes suspendues —',
+    clearAll:            'tout effacer',
+    cardsSuffix:         'cartes',
+    fullDeck:            'tout le jeu',
+    undoBtn:             '↩ Annuler',
+    btnHome:             '← Accueil',
+    modeEngThai:         'EN → FR',
+    modeThaiEng:         'FR → EN',
+    doneMsg:             (correct, total, pct) => `${correct} sur ${total} correct (${pct} %).`,
+    noCards:             'Aucune carte à réviser ! Tout est à jour. 🎉 Revenez plus tard ou ajoutez des catégories.',
+    confirmReset:        'Réinitialiser TOUTE la progression ? Action irréversible.',
     catLabels: {
-      numbers: 'ตัวเลข', pronouns: 'สรรพนาม', verbs: 'กริยา',
-      days: 'วัน & เวลา', greetings: 'คำทักทาย', nouns: 'คำนาม',
-      adjectives: 'คุณศัพท์', places: 'สถานที่', patterns: 'รูปประโยค',
-      quantifiers: 'บอกปริมาณ', shopping: 'ช้อปปิ้ง', time: 'เวลา',
-      questions: 'คำถาม', grammar: 'ไวยากรณ์', family: 'ครอบครัว',
-      emotions: 'อารมณ์', transport: 'การเดินทาง', animals: 'สัตว์',
-      colors: 'สี', food: 'อาหาร', body: 'ร่างกาย',
-      health: 'สุขภาพ', home: 'บ้าน', work: 'งาน',
-      clothing: 'เสื้อผ้า', directions: 'ทิศทาง', months: 'เดือน',
-      nature: 'ธรรมชาติ', weather: 'อากาศ', alphabet: 'อักษร',
-      sentences: 'ประโยค', random: 'สุ่ม',
+      numbers: 'Nombres', pronouns: 'Pronoms', verbs: 'Verbes',
+      days: 'Jours', greetings: 'Salutations', nouns: 'Noms',
+      adjectives: 'Adjectifs', places: 'Lieux', patterns: 'Structures',
+      quantifiers: 'Quantités', shopping: 'Courses', time: 'Temps',
+      questions: 'Questions', grammar: 'Grammaire', family: 'Famille',
+      emotions: 'Émotions', transport: 'Transport', animals: 'Animaux',
+      colors: 'Couleurs', food: 'Nourriture', body: 'Corps',
+      health: 'Santé', home: 'Maison', work: 'Travail',
+      clothing: 'Vêtements', directions: 'Directions', months: 'Mois',
+      nature: 'Nature', weather: 'Météo', alphabet: 'Alphabet',
+      sentences: 'Phrases', random: 'Aléatoire',
     },
   },
 };
@@ -1144,7 +1150,7 @@ function setUILang(lang) {
   uiLang = lang;
   localStorage.setItem('ff_ui_lang', lang);
   document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-  document.getElementById('lang-th').classList.toggle('active', lang === 'th');
+  document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
   applyStrings();
   updateCompactControls();
   renderCatGrid(false);
@@ -2317,7 +2323,7 @@ document.addEventListener('keydown', e => {
 
   document.getElementById('streak-pill').textContent = '🔥 ' + streak;
   document.getElementById('lang-en').classList.toggle('active', uiLang === 'en');
-  document.getElementById('lang-th').classList.toggle('active', uiLang === 'th');
+  document.getElementById('lang-fr').classList.toggle('active', uiLang === 'fr');
   applyStrings();
   updateCompactControls();
 
